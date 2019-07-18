@@ -1,4 +1,13 @@
 package testing;
+/**
+ * ArrOperation class contains  4 methods
+ * which calculate size of largest mirror in array,
+ * number of clumps in array , splitArray and return index where
+ * both side have equal sum and fixXY funcion 
+ * 
+ * @author Naman
+ * 
+ */
 
 public class ArrOperation {
 
@@ -43,6 +52,16 @@ public class ArrOperation {
      	 }
      	 return max;
 	}
+	
+	/**
+	 * Returns total number of clumps in input array. clumps is 
+	 * is a series of 2 or more adjacent elements of the same value
+	 * in an array
+	 * 
+	 * @param numberArr array of number
+	 * @return total clumps in input array
+	 */
+	
 	public int numberOfClumps(int [] numberArr)
 	{
 		 //throw exception if arr is empty
@@ -66,6 +85,18 @@ public class ArrOperation {
 		}
         return count;
 	}
+	
+	/**
+	 * Return an array that contains exactly the same
+	 * numbers as the input array, but rearranged so
+	 * that every X is immediately followed by a Y.  
+	 * 
+	 * @param numberArr array of numbers
+	 * @param X it should be before Y
+	 * @param Y it should be after X
+	 * @return rearranged array so that X is immediately followed by Y
+	 */
+	
 	public int[]  fixXY(int []numberArr, int X , int Y)
 	{
 		int length = numberArr.length;
@@ -132,7 +163,16 @@ public class ArrOperation {
 		return numberArr;
 	}
 	
-
+	/**
+	 * Return the index if there is a place to split
+	 * the input array so that the sum of the numbers 
+	 * on one side is equal to the sum of the numbers 
+	 * on the other side else return -1.
+	 * 
+	 * @param numberArr array of numbers
+	 * @return index at which both side of array have same sum of elements
+	 */
+	
 	public int splitArray(int[] numberArr) 
 	{
 		 //throw exception if array is empty
