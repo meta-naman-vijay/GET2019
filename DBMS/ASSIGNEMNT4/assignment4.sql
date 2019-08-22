@@ -79,5 +79,8 @@ DELIMITER ;
 CALL get_order_detail('2018-07-06',CURDATE());
 
 
-
+/* ASSIGNEMNT-3 */
+ALTER TABLE product ADD INDEX product (productId);
+ALTER TABLE category ADD INDEX parent_category_id (category_name);
+ALTER TABLE orders ADD INDEX odrder_index (order_date);
 
