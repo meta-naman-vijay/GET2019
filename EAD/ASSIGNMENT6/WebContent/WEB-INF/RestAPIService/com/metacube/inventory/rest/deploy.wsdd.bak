@@ -1,0 +1,135 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from RestAPIService WSDL service -->
+
+  <service name="RestAPI" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://rest.inventory.metacube.com"/>
+      <parameter name="wsdlServiceElement" value="RestAPIService"/>
+      <parameter name="schemaQualified" value="http://rest.inventory.metacube.com,http://element.inventory.metacube.com"/>
+      <parameter name="wsdlServicePort" value="RestAPI"/>
+      <parameter name="className" value="com.metacube.inventory.rest.RestAPISoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="RestAPI"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="update" qname="operNS:update" xmlns:operNS="http://rest.inventory.metacube.com" soapAction="" >
+        <parameter qname="pns:element" xmlns:pns="http://rest.inventory.metacube.com" type="tns:Element" xmlns:tns="http://element.inventory.metacube.com"/>
+      </operation>
+      <operation name="insert" qname="operNS:insert" xmlns:operNS="http://rest.inventory.metacube.com" soapAction="" >
+        <parameter qname="pns:element" xmlns:pns="http://rest.inventory.metacube.com" type="tns:Element" xmlns:tns="http://element.inventory.metacube.com"/>
+      </operation>
+      <operation name="getElement" qname="operNS:getElement" xmlns:operNS="http://rest.inventory.metacube.com" returnQName="retNS:getElementReturn" xmlns:retNS="http://rest.inventory.metacube.com" returnType="rtns:Element" xmlns:rtns="http://element.inventory.metacube.com" soapAction="" >
+        <parameter qname="pns:elementName" xmlns:pns="http://rest.inventory.metacube.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteElement" qname="operNS:deleteElement" xmlns:operNS="http://rest.inventory.metacube.com" soapAction="" >
+        <parameter qname="pns:elementName" xmlns:pns="http://rest.inventory.metacube.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllElements" qname="operNS:getAllElements" xmlns:operNS="http://rest.inventory.metacube.com" returnQName="retNS:getAllElementsReturn" xmlns:retNS="http://rest.inventory.metacube.com" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://rest.inventory.metacube.com" returnItemQName="tns:item" xmlns:tns="http://rest.inventory.metacube.com" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getAllElements getElement update insert deleteElement"/>
+
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>deleteElement"
+        type="java:com.metacube.inventory.rest.DeleteElement"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>getElement"
+        type="java:com.metacube.inventory.rest.GetElement"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>getAllElements"
+        type="java:com.metacube.inventory.rest.GetAllElements"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>getAllElementsResponse"
+        type="java:com.metacube.inventory.rest.GetAllElementsResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>updateResponse"
+        type="java:com.metacube.inventory.rest.UpdateResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>getElementResponse"
+        type="java:com.metacube.inventory.rest.GetElementResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>insert"
+        type="java:com.metacube.inventory.rest.Insert"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>update"
+        type="java:com.metacube.inventory.rest.Update"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>deleteElementResponse"
+        type="java:com.metacube.inventory.rest.DeleteElementResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:>insertResponse"
+        type="java:com.metacube.inventory.rest.InsertResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://element.inventory.metacube.com"
+        qname="ns:Element"
+        type="java:com.metacube.inventory.element.Element"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://rest.inventory.metacube.com"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
