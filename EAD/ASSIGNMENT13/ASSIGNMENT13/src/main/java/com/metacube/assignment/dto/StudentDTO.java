@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * @author Pankaj
+ * @author Naman
  *
  */
 public class StudentDTO {
